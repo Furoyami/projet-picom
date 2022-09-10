@@ -26,7 +26,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	private final TrancheHoraireDao trancheHoraireDao;
 
 	@Override
-	public void run(String... args) throws Exception {
+	public void run(String... args) throws Exception {		
 		ajouterAdministrateur();
 		ajouterClient();
 		ajouterZone();
