@@ -33,7 +33,7 @@ public class Annonce {
 	@Future(message = "La date de fin doit être dans le future")
 	private LocalDateTime dateHeureFin;
 	private String contenu;
-	@CreditCardNumber
+//	@CreditCardNumber
 	@NotEmpty(message = "Veuillez entrer un numéro de carte")
 	private String numeroCarte;
 

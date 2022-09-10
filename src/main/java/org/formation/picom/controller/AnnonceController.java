@@ -34,9 +34,9 @@ public class AnnonceController {
 	}
 	
 	@PostMapping("ajoutAnnonce")
-	public ModelAndView postAnnonce(@Valid @ModelAttribute Annonce annonce, BindingResult result) {
+	public ModelAndView postAnnonce(@ModelAttribute Annonce annonce, BindingResult result) {
 		if(result.hasErrors()) {
-			System.out.println(result);
+			System.out.println("Erreur");
 			return ajoutAnnonceGet(annonce);
 		} else {
 			annonceService.enregistrerAnnonce(annonce);
