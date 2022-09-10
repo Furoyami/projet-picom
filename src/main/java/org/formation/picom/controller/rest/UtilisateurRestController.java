@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.formation.picom.business.Client;
 import org.formation.picom.business.Utilisateur;
 import org.formation.picom.dto.ClientDto;
+import org.formation.picom.dto.LoginDto;
 import org.formation.picom.services.UtilisateurService;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
@@ -44,10 +45,10 @@ public class UtilisateurRestController {
 		return utilisateurService.enregistrerUtilisateur(client);
 	}
 	
-	@GetMapping("authUtilisateur")
-	@ResponseStatus(code = HttpStatus.ACCEPTED)
-    public Utilisateur recupererUtilisateur(String email,String motDePasse) {
-        return utilisateurService.recupererUtilisateur(email, motDePasse);
-    }
-
+	
+	@PostMapping("login")
+	@ResponseStatus(code = HttpStatus.OK)
+	public Utilisateur connectUser(@RequestBody LoginDto loginDto) {
+		return utilisateurService.recupererUtilisateur(loginDto.getEmail(), loginDto.getMotDePasse());
+	}
 }
