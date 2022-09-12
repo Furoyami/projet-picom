@@ -1,8 +1,6 @@
 package org.formation.picom.controller;
 
 
-import javax.validation.Valid;
-
 import org.formation.picom.business.Annonce;
 import org.formation.picom.services.AnnonceService;
 import org.formation.picom.services.TrancheHoraireService;
@@ -24,7 +22,7 @@ public class AnnonceController {
 	private final ZoneService zoneService;
 	private final TrancheHoraireService trancheHoraireService;
 	
-	@GetMapping(value = { "ajoutAnnonce" })
+	@GetMapping("ajoutAnnonce" )
 	public ModelAndView ajoutAnnonceGet(@ModelAttribute Annonce annonce) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("lstZones",zoneService.recupererZones());

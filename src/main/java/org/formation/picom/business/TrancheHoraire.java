@@ -10,6 +10,7 @@ import javax.persistence.ManyToMany;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Data
@@ -22,6 +23,7 @@ public class TrancheHoraire {
 	private int debut;
 	
 	@ManyToMany(mappedBy = "lstTrancheHoraires")
+	@ToString.Exclude
 	private List<Annonce> lstAnnonces;
 	
 	public String getTrancheHoraireFormatee() {

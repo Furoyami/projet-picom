@@ -1,30 +1,32 @@
-package org.formation.picom.business;
+package org.formation.picom.dto;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.formation.picom.business.Client;
+import org.formation.picom.business.TrancheHoraire;
+import org.formation.picom.business.Zone;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
-import lombok.Data;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.FieldDefaults;
 
-@Entity
-@Data
-//@RequiredArgsConstructor
-public class Annonce {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+@RequiredArgsConstructor
+@Getter
+@Setter
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class AnnonceDto {
+	
 	private LocalDateTime dateHeureCreation;
 	@DateTimeFormat(iso = ISO.DATE_TIME)
 	private LocalDateTime dateHeureDebut;
@@ -53,8 +55,4 @@ public class Annonce {
 	private List<Zone> lstZones;
 	@ManyToMany
 	private List<TrancheHoraire> lstTrancheHoraires;
-
-	public Annonce() {
-		dateHeureCreation = LocalDateTime.now();
-	}
 }
