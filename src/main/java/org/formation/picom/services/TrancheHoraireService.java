@@ -7,5 +7,7 @@ import org.formation.picom.business.TrancheHoraire;
 public interface TrancheHoraireService {
 
 	List<TrancheHoraire> recupererTrancheHoraire();
+	
+	TrancheHoraire recupererTrancheHoraire(Long id);
 
 }

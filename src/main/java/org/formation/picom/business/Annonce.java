@@ -25,13 +25,24 @@ public class Annonce {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+//	@NonNull
+	@NotNull(message = "Erreur date de création.")
 	private LocalDateTime dateHeureCreation;
+	
+//	@NonNull
+	@NotNull(message = "Veuillez renseigner la date de début.")
 	@DateTimeFormat(iso = ISO.DATE_TIME)
 	private LocalDateTime dateHeureDebut;
+	
+	
+	
 	@DateTimeFormat(iso = ISO.DATE_TIME)
 	@Future(message = "La date de fin doit être dans le future")
 	private LocalDateTime dateHeureFin;
+	
 	private String contenu;
+	
 //	@CreditCardNumber
 	@NotEmpty(message = "Veuillez entrer un numéro de carte")
 	private String numeroCarte;
@@ -49,8 +60,10 @@ public class Annonce {
 
 	@ManyToOne
 	private Client client;
+	
 	@ManyToMany
 	private List<Zone> lstZones;
+	
 	@ManyToMany
 	private List<TrancheHoraire> lstTrancheHoraires;
 

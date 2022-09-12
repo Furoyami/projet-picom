@@ -1,11 +1,14 @@
 package org.formation.picom.initialisation;
 
-import org.formation.picom.business.Administrateur;
+import java.time.LocalDateTime;
 
+import org.formation.picom.business.Administrateur;
+import org.formation.picom.business.Annonce;
 import org.formation.picom.business.Arret;
 import org.formation.picom.business.Client;
 import org.formation.picom.business.TrancheHoraire;
 import org.formation.picom.business.Zone;
+import org.formation.picom.dao.AnnonceDao;
 import org.formation.picom.dao.ArretDao;
 import org.formation.picom.dao.TrancheHoraireDao;
 import org.formation.picom.dao.UtilisateurDao;
@@ -24,14 +27,16 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 	private final ZoneDao zoneDao;
 	private final ArretDao arretDao;
 	private final TrancheHoraireDao trancheHoraireDao;
+	private final AnnonceDao annonceDao;
 
 	@Override
-	public void run(String... args) throws Exception {		
+	public void run(String... args) throws Exception {
 		ajouterAdministrateur();
 		ajouterClient();
 		ajouterZone();
 		ajouterArrets();
 		ajouterTrancheHoraire();
+		ajouterAnnonce();
 
 	}
 
@@ -44,10 +49,9 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 
 		utilisateurDao.save(administrateur);
 	}
-	
-		
+
 	private void ajouterClient() {
-						
+
 		Client client = new Client();
 		client.setNom("Lamontagne");
 		client.setPrenom("Neville");
@@ -80,8 +84,22 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 			trancheHoraireDao.save(trancheHoraire);
 		}
 
-	
 	}
 
+	public void ajouterAnnonce() {
+		for (int i = 1; i < 6; i++) {
+		Annonce annonce = new Annonce();
+		annonce.setDateHeureCreation(LocalDateTime.now());
+		annonce.setDateHeureDebut(LocalDateTime.of(2002, 12, 15, 18, 0));
+		annonce.setDateHeureFin(LocalDateTime.of(2022, 12, 17, 19, 0));
+		annonce.setContenu("annonce test" + i);
+		annonce.setNumeroCarte("0000111122223333");
+		annonce.setAnneeExpiration(2022);
+		annonce.setMoisExpiration("12");
+		annonce.setCryptogramme("333");
+		annonce.setMontantRegleEnEuros(0d);
+		annonceDao.save(annonce);
+		}
+	}
 
 }

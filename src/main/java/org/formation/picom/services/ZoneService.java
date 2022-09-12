@@ -7,5 +7,7 @@ import org.formation.picom.business.Zone;
 public interface ZoneService {
 
 	List<Zone> recupererZones();
+	
+	Zone recuperZone(Long id);
 
 }

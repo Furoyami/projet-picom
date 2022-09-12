@@ -20,4 +20,9 @@ public class TrancheHoraireServiceImpl implements TrancheHoraireService {
 		return trancheHoraireDao.findAll();
 	}
 
+	@Override
+	public TrancheHoraire recupererTrancheHoraire(Long id) {
+		return trancheHoraireDao.findById(id).orElse(null);
+	}
+
 }

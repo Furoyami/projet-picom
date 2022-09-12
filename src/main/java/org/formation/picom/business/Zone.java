@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
@@ -23,9 +25,11 @@ public class Zone {
 	private Long id;
 	private String nom;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "lstZones")
 	@ToString.Exclude
 	private List<Annonce> lstAnnonces;
+	
 	@OneToMany(mappedBy = "zone")
 	private List<Arret> lstArrets;
 }
