@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Future;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -17,6 +18,7 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
@@ -27,32 +29,48 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class AnnonceDto {
 	
-	private LocalDateTime dateHeureCreation;
-	@DateTimeFormat(iso = ISO.DATE_TIME)
+	
+	@NonNull
+	@NotNull(message = "Merci d'indiquer une date de début")
 	private LocalDateTime dateHeureDebut;
-	@DateTimeFormat(iso = ISO.DATE_TIME)
-	@Future(message = "La date de fin doit être dans le future")
+	
+	@NonNull
+	@NotNull(message = "Merci d'indiquer une date de fin")
 	private LocalDateTime dateHeureFin;
+	
+	@NonNull
+	@NotBlank(message = "Merci de renseigner le contenu de l'annonce")
 	private String contenu;
+	
 //	@CreditCardNumber
 	@NotEmpty(message = "Veuillez entrer un numéro de carte")
 	private String numeroCarte;
 
+	@NonNull
 	@NotNull(message = "Veuillez entrer une année d'expiration")
-	private int anneeExpiration;
+	private Integer anneeExpiration;
 
+	@NonNull
 	@NotNull(message = "Veuillez entrer un mois d'expiration")
 	private String moisExpiration;
 
+	@NonNull
 	@NotEmpty(message = "Veuillez entrer un cryptogramme")
 	private String cryptogramme;
 
-	private double montantRegleEnEuros;
+	@NonNull
+	@NotNull(message = "Veuillez entrer un montant")
+	private Double montantRegleEnEuros;
 
-	@ManyToOne
-	private Client client;
-	@ManyToMany
+	@NonNull
+	@NotNull(message = "Veuillez renseigner le client.")
+	private Long client;
+	
+	@NonNull
+	@NotEmpty(message = "Veuillez renseigner les tranches horaires.")
 	private List<Zone> lstZones;
-	@ManyToMany
+	
+	@NonNull
+	@NotEmpty(message = "Veuillez renseigner les zones.")
 	private List<TrancheHoraire> lstTrancheHoraires;
 }

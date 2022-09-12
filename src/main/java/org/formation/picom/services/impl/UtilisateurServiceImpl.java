@@ -50,4 +50,9 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		return clientDao.findByEmailAndMotDePasse(email, motDePasse);
 	}
 
+	@Override
+	public Client recupererClient(Long id) {
+		return clientDao.findById(id).orElse(null);
+	}
+
 }

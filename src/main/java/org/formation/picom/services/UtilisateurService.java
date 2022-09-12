@@ -18,5 +18,7 @@ public interface UtilisateurService {
 	Utilisateur recupererUtilisateur(String email, String motDePasse);
 
 	Client recupererClient(String email, String motDePasse);
+	
+	Client recupererClient(Long id);
 
 }
